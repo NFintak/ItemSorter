@@ -12,7 +12,7 @@ import java.util.Comparator;
  * @author leon on 30/01/2019.
  */
 public class SortByPriceTest {
-    //should only change price var for each here
+
     @Test
     public void test1() {
         //given
@@ -66,20 +66,35 @@ public class SortByPriceTest {
     @Test
     public void test4() {
         //given
-
+        Item item1 = new Item(0L, "Apple", 1.5);
+        Item item2 = new Item(1L, "Banana", 1.5);
+        Item item3 = new Item(2L, "Cherry", 3.0);
+        Item item4 = new Item(3L, "Donuts", 4.0);
+        Item[] itemsToSort = {item3, item2, item4, item1};
+        Item[] expected = {item2, item1, item3, item4};
+        ItemSorter itemSorter = new ItemSorter(itemsToSort);
+        Comparator<Item> comparator = (Comparator<Item>) new PriceComparator();
         //when
-
+        Item[] actual = itemSorter.sort(comparator);
         //then
-
+        Assert.assertArrayEquals(expected, actual);
     }
 
     @Test
     public void test5() {
         //given
-
+        Item item1 = new Item(0L, "Apple", 1.5);
+        Item item2 = new Item(2L, "Banana", 1.5);
+        Item item3 = new Item(3L, "Cherry", 3.0);
+        Item item4 = new Item(3L, "Donuts", 5.0);
+        Item item5 = new Item(4L, "Eggs", 5.0);
+        Item[] itemsToSort = {item5, item1, item3, item2, item4};
+        Item[] expected = {item1, item2, item3, item5, item4};
+        ItemSorter itemSorter = new ItemSorter(itemsToSort);
+        Comparator<Item> comparator = (Comparator<Item>) new PriceComparator();
         //when
-
+        Item[] actual = itemSorter.sort(comparator);
         //then
-
+        Assert.assertArrayEquals(expected, actual);
     }
 }
