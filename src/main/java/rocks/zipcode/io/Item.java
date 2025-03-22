@@ -9,6 +9,9 @@ public class Item {
     Double price;
 
     public Item() {
+        this.id = 0L;
+        this.name = "";
+        this.price = 0.01;
     }
 
     public Item(Long id, String name, Double price) {
